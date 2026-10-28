@@ -1,0 +1,230 @@
+/* ==========================================
+   🌿 Library App — Tailwind v4 + DaisyUI v5
+   Nature Theme: Sage Green, Wood, Sunlight
+   ========================================== */
+
+@import "tailwindcss";
+
+/* Source scanning for Blade & Laravel views */
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+@source "../../storage/framework/views/*.php";
+@source "../**/*.blade.php";
+@source "../**/*.js";
+
+/* DaisyUI plugin */
+@plugin "daisyui" {
+    themes: nature --default;
+}
+
+/* ==========================================
+   Custom Nature Theme
+   ========================================== */
+@plugin "daisyui/theme" {
+    name: "nature";
+    default: true;
+    color-scheme: light;
+
+    /* Sage green palette */
+    --color-primary: #7A9A6D;
+    --color-primary-content: #FFFFFF;
+
+    /* Warm wood / walnut */
+    --color-secondary: #A67C52;
+    --color-secondary-content: #FFFFFF;
+
+    /* Sunlight gold */
+    --color-accent: #D4A843;
+    --color-accent-content: #3D2E1E;
+
+    /* Dark forest */
+    --color-neutral: #2D382E;
+    --color-neutral-content: #ECE8DD;
+
+    /* Warm cream backgrounds */
+    --color-base-100: #FAF8F4;
+    --color-base-200: #F0ECE3;
+    --color-base-300: #DDD6CB;
+    --color-base-content: #2D382E;
+
+    /* Feedback colors */
+    --color-info: #5B9BD5;
+    --color-info-content: #FFFFFF;
+    --color-success: #6B8F5E;
+    --color-success-content: #FFFFFF;
+    --color-warning: #D4A843;
+    --color-warning-content: #3D2E1E;
+    --color-error: #C45B5B;
+    --color-error-content: #FFFFFF;
+
+    /* Border radius */
+    --radius-selector: 0.75rem;
+    --radius-field: 0.75rem;
+    --radius-box: 1rem;
+}
+
+/* ==========================================
+   Custom Font
+   ========================================== */
+@theme {
+    --font-sans: "Poppins", "Figtree", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ==========================================
+   Base Styles
+   ========================================== */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    ::selection {
+        background-color: rgba(122, 154, 109, 0.25);
+        color: #2D382E;
+    }
+}
+
+/* ==========================================
+   Nature-Themed Components
+   ========================================== */
+@layer components {
+
+    /* ---- Wood-grain card accent ---- */
+    .nature-card {
+        position: relative;
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .nature-card::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #A67C52 0%, #C4A882 50%, #A67C52 100%);
+        border-radius: 0 0 1rem 1rem;
+        opacity: 0;
+        transition: opacity 0.35s ease;
+    }
+    .nature-card:hover {
+        transform: translateY(-4px);
+        box-shadow:
+            0 12px 28px -8px rgba(45, 56, 46, 0.12),
+            0 4px 12px -4px rgba(122, 154, 109, 0.08);
+    }
+    .nature-card:hover::before {
+        opacity: 1;
+    }
+
+    /* ---- Wood-texture decorative strip ---- */
+    .wood-strip {
+        background: linear-gradient(135deg, #A67C52 0%, #C4A882 40%, #8B6540 70%, #A67C52 100%);
+        background-size: 200% 200%;
+    }
+
+    /* ---- Sunlight glow effect ---- */
+    .sunlight-glow {
+        box-shadow: 0 0 40px 10px rgba(212, 168, 67, 0.08);
+    }
+
+    /* ---- Sage gradient backgrounds ---- */
+    .bg-sage-gradient {
+        background: linear-gradient(135deg, #7A9A6D 0%, #5C7A52 100%);
+    }
+    .bg-sage-gradient-soft {
+        background: linear-gradient(135deg, rgba(122, 154, 109, 0.08) 0%, rgba(166, 124, 82, 0.06) 100%);
+    }
+
+    /* ---- Nature badge ---- */
+    .nature-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        border-radius: 9999px;
+        background: rgba(122, 154, 109, 0.12);
+        color: #5C7A52;
+        border: 1px solid rgba(122, 154, 109, 0.2);
+    }
+
+    /* ---- Premium table styling ---- */
+    .nature-table {
+        width: 100%;
+    }
+    .nature-table thead th {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 600;
+        padding: 0.875rem 1rem;
+        text-align: left;
+        background: rgba(45, 56, 46, 0.04);
+        color: #5C7A52;
+        border-bottom: 2px solid rgba(122, 154, 109, 0.15);
+    }
+    .nature-table tbody td {
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+        border-bottom: 1px solid rgba(221, 214, 203, 0.6);
+    }
+    .nature-table tbody tr {
+        transition: background-color 0.2s ease;
+    }
+    .nature-table tbody tr:hover {
+        background: rgba(122, 154, 109, 0.04);
+    }
+
+    /* ---- Sharper & more visible borders for inputs, cards, and modals ---- */
+    .input, .textarea, .select,
+    .input-bordered, .textarea-bordered, .select-bordered {
+        border-color: #8FA887 !important; /* Defined solid sage green border */
+        border-width: 1.5px !important;
+        border-style: solid !important;
+        background-color: #FAF8F4 !important;
+        opacity: 1 !important;
+    }
+    .input:focus, .textarea:focus, .select:focus,
+    .input-bordered:focus, .textarea-bordered:focus, .select-bordered:focus {
+        border-color: #5C7A52 !important;
+        outline: none !important;
+        box-shadow: 0 0 0 3px rgba(122, 154, 109, 0.3) !important;
+    }
+    .card, .nature-card, .modal-box {
+        border: 1.5px solid #C4BBAF !important; /* Warm defined tan border */
+    }
+}
+
+/* ==========================================
+   Custom Utilities
+   ========================================== */
+@layer utilities {
+
+    /* ---- Animated leaf float ---- */
+    @keyframes leaf-float {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        25%      { transform: translateY(-6px) rotate(3deg); }
+        75%      { transform: translateY(4px) rotate(-2deg); }
+    }
+    .animate-leaf-float {
+        animation: leaf-float 4s ease-in-out infinite;
+    }
+
+    /* ---- Sunlight shimmer ---- */
+    @keyframes sunlight-shimmer {
+        0%   { opacity: 0.6; }
+        50%  { opacity: 1; }
+        100% { opacity: 0.6; }
+    }
+    .animate-sunlight {
+        animation: sunlight-shimmer 3s ease-in-out infinite;
+    }
+
+    /* ---- Text gradient sage ---- */
+    .text-sage-gradient {
+        background: linear-gradient(135deg, #7A9A6D, #5C7A52);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+}
